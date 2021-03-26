@@ -1,12 +1,15 @@
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
 app.get('/', (req, res) => {
-    let $tagCode = "";
+    let textCode = [];
     for (let i = 1; i <= 50; i++) {
-        $tagCode += `<p> ${isPar(i)} </p>`;
+        textCode.push(isPar(i));
     }
-    res.send($tagCode);
+    res.render("index", { textCode: textCode });
 });
 
 function isPar(num) {   
